@@ -42,7 +42,7 @@ public class HomeController {
     @Value("${spring.datasource.url}")
     private String datasourceUrl;
 
-    private final Configuration cfg = new Configuration();
+    private final Configuration cfg = new Configuration(Configuration.VERSION_2_3_25);
     private final File outDirFile = new File(Constants.output+Constants.ApplicationName+"/");
 
     @RequestMapping("/")
@@ -81,7 +81,7 @@ public class HomeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cfg.setObjectWrapper(new DefaultObjectWrapper());
+        cfg.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_25));
         Map<String, Object> params = Maps.newHashMap();
 
         Map<String,Object> appConfig = createAppConfig();
