@@ -27,7 +27,7 @@ public class ${entity.modelName}Controller extends BaseController<PageImpl<${ent
     @RequestMapping(value = "/${entity.modelName?uncap_first}",method = POST,consumes = APPLICATION_JSON_UTF8_VALUE,produces = APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody CommonResponse<PageImpl<${entity.modelName}>> ${entity.modelName?uncap_first}list(String token, @RequestBody JsonNode data){
         if(data==null){
-            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{\"filters\":{},\"columns\":{}}}！");
+            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{\"filters\":{},\"columns\":\"\"}！");
         }
         if(!checkJson(data)){
             return null;
