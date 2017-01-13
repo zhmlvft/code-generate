@@ -1,4 +1,4 @@
-#本项目是使用数据库表，自动创建Spring-boot的Rest接口工程
+#本项目是使用数据库表，自动创建Spring-boot的Rest接口工程，1分钟就可生成可运行的rest接口。
 ##配置说明
 
 ###1.修改/src/main/java/com/zhm/utils/Constants.java文件。
