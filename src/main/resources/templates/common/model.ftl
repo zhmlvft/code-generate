@@ -10,7 +10,7 @@ public class ${entity.modelName} implements Serializable{
 
     <#list entity.fields as property>
     <#if property.columnClassName == 'java.sql.Timestamp'>
-    @io.swagger.annotations.ApiModelProperty(required = true, dataType="string",example = "2017-01-01 00:00:01")
+    @io.swagger.annotations.ApiModelProperty(dataType="string",example = "2017-01-01 00:00:01")
     </#if>
     private ${property.columnClassName} ${property.modelName};
     </#list>

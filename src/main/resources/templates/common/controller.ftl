@@ -26,7 +26,7 @@ public class ${entity.modelName}Controller extends BaseController<PageImpl<${ent
     private ${entity.modelName}Service ${entity.modelName?uncap_first}Service;
     @RequestMapping(value = "/${entity.modelName?uncap_first}",method = POST,consumes = APPLICATION_JSON_UTF8_VALUE,produces = APPLICATION_JSON_UTF8_VALUE)
     public @ResponseBody CommonResponse<PageImpl<${entity.modelName}>> ${entity.modelName?uncap_first}list(String token, @RequestBody JsonNode data){
-        if(StringUtils.isEmpty(data)){
+        if(data==null){
             throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{\"filters\":{},\"columns\":{}}}！");
         }
         if(!checkJson(data)){
@@ -36,6 +36,9 @@ public class ${entity.modelName}Controller extends BaseController<PageImpl<${ent
         Map<String, Object> params = parseJsonToMap(data);
         params.put("start",page.getPageNumber()*page.getPageSize());
         JsonNode columns = data.get("data").get("columns");
+        if(columns!=null&&StringUtils.isEmpty(columns.asText())){
+            columns=null;
+        }
         List<${entity.modelName}> result = ${entity.modelName?uncap_first}Service.findByCond(params, columns==null?null:columns.asText());
         long total = ${entity.modelName?uncap_first}Service.findNumsByCond(params);
         return buildResponse(new PageImpl<${entity.modelName}>(result,page,total));
