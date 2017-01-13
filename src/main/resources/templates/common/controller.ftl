@@ -13,22 +13,23 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Map;
 
 @Controller
-public class ${entity.modelName}Controller extends BaseController{
+public class ${entity.modelName}Controller extends BaseController<PageImpl<${entity.modelName}>>{
     @Autowired
     private ${entity.modelName}Service ${entity.modelName?uncap_first}Service;
-    @RequestMapping(value = "/${entity.modelName?uncap_first}")
-    public @ResponseBody CommonResponse ${entity.modelName?uncap_first}list(String token, String data){
+    @RequestMapping(value = "/${entity.modelName?uncap_first}",method = {RequestMethod.GET ,RequestMethod.POST})
+    public @ResponseBody CommonResponse<PageImpl<${entity.modelName}>> ${entity.modelName?uncap_first}list(String token, String data){
         if(StringUtils.isEmpty(data)){
-            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{}}！");
+            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{\"filters\":{},\"columns\":{}}}！");
         }
         JsonNode json = parseStringToJson(data);
         if(StringUtils.isEmpty(json)){
-            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{}}！");
+            throw new CommonException("客户端提交的data参数为空，请校验,正确的格式为data={\"page\":1,\"size\":10,\"data\":{\"filters\":{},\"columns\":{}}}！");
         }
         if(!checkJson(json)){
             return null;

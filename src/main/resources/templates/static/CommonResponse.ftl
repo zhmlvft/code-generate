@@ -6,19 +6,19 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class CommonResponse implements Serializable{
+public class CommonResponse<T> implements Serializable{
     private static final long serialVersionUID = 1L;
     private int status;
     private String errmsg;
     private String code;
-    private Object data;
+    private T data;
 
-    public CommonResponse(int status, Object data) {
+    public CommonResponse(int status, T data) {
         this.status = status;
         this.data = data;
     }
 
-    public CommonResponse(int status, Object data, String code) {
+    public CommonResponse(int status, T data, String code) {
         this.status = status;
         this.code = code;
         this.data = data;
@@ -48,11 +48,11 @@ public class CommonResponse implements Serializable{
         this.code = code;
     }
 
-    public Object getData() {
+    public T getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }

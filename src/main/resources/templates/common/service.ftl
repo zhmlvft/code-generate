@@ -29,8 +29,8 @@ public interface ${entity.modelName}Service {
             "</choose>" +
         " from ${entity.tableName} where 1=1 " +
             <#list entity.fields as property>
-            "<if test=\"data.data.${property.modelName} != null\">" +
-                "AND ${property.columnName} = ${r"#"}{data.data.${property.modelName}} " +
+            "<if test=\"data.data.filters.${property.modelName} != null\">" +
+                "AND ${property.columnName} = ${r"#"}{data.data.filters.${property.modelName}} " +
             "</if>" +
             </#list>
         " limit ${r"#"}{data.start},${r"#"}{data.size}" +
@@ -41,8 +41,8 @@ public interface ${entity.modelName}Service {
     @Select("<script>" +
         "select count(id) from ${entity.tableName} where 1=1 " +
             <#list entity.fields as property>
-            "<if test=\"data.data.${property.modelName} != null\">" +
-                "AND ${property.columnName} = ${r"#"}{data.data.${property.modelName}} " +
+            "<if test=\"data.data.filters.${property.modelName} != null\">" +
+                "AND ${property.columnName} = ${r"#"}{data.data.filters.${property.modelName}} " +
             "</if>" +
             </#list>
     "</script>")

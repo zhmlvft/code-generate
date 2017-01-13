@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by zhm on 17-1-1.
  */
-public class BaseController {
+public class BaseController<T> {
     private final ObjectMapper mapper = new ObjectMapper();
     public final JsonNode parseStringToJson(String data){
         try {
@@ -41,7 +41,7 @@ public class BaseController {
         }
         return true;
     }
-    public final CommonResponse buildResponse(Object data) {
+    public final CommonResponse<T> buildResponse(T data) {
         return new CommonResponse(10000,data);
     }
 }

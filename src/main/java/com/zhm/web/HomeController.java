@@ -91,6 +91,8 @@ public class HomeController {
             //生成通用类
             //SpringBoot启动类
             createSource("static/Application.ftl",Constants.javaBasePackage,"Application.java",params);
+            //swagger配置文件
+            createSource("static/SwaggerConfig.ftl",Constants.javaBasePackage+".config","SwaggerConfig.java",params);
             //logback配置
             createSource("static/logback.ftl",Constants.resourcesBasePackage,"logback.xml",params);
             //Controller基类
